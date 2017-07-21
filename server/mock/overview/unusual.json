@@ -1,8 +1,11 @@
 {
   "code": 0,
   "success": true,
-  "data": {
-    "test": "test"
-  },
+  "data": [
+    {"name":"泥工组", "value":12},
+    {"name":"钢筋组", "value":11},
+    {"name":"经理组", "value":6},
+    {"name":"项目经理组", "value":12}
+  ],
   "msg": ""
 }

@@ -1,8 +1,17 @@
 {
   "code": 0,
   "success": true,
-  "data": {
-    "test": "test"
-  },
+  "data": [
+    { "name":"工程技术组", "value": 96},
+    { "name":"监理组", "value": 80},
+    { "name":"泥工组1", "value":70},
+    { "name":"项目经理组1", "value": 67},
+    { "name":"安全质量2", "value": 66},
+    { "name":"钢筋组1", "value": 66},
+    { "name":"工程技术组2", "value": 56},
+    { "name":"工程技术组3", "value": 50},
+    { "name":"钢筋组2", "value": 40},
+    { "name":"钢筋组3", "value": 24}
+  ],
   "msg": ""
 }

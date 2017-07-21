@@ -1,13 +1,8 @@
 <template>
   <div>
     <slot name="title"></slot>
-    <div class="pie">
-      <IEcharts :option="pie" :loading="loading" @ready="onReady" @click="onClick"></IEcharts>
-    </div>
-    <div class="legend">
-      <ul v-for="">
-        <li></li>
-      </ul>
+    <div class="echarts">
+      <IEcharts :option="pie" :loading="loading" :resizable="true"></IEcharts>
     </div>
   </div>
 </template>
@@ -18,6 +13,12 @@
     name: 'view',
     components: {
       IEcharts
+    },
+    props: {
+        pieData:{
+            type: Array,
+            default: () => []
+        }
     },
     data: () => ({
       loading: true,
@@ -34,7 +35,7 @@
         legend: {
           orient: 'vertical',
           left: 'left',
-          data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+          data: []
         },
         series : [
           {
@@ -42,13 +43,7 @@
             type: 'pie',
             radius : '55%',
             center: ['50%', '60%'],
-            data:[
-              {value:335, name:'直接访问'},
-              {value:310, name:'邮件营销'},
-              {value:234, name:'联盟广告'},
-              {value:135, name:'视频广告'},
-              {value:1548, name:'搜索引擎'}
-            ],
+            data:[],
             itemStyle: {
               emphasis: {
                 shadowBlur: 10,
@@ -60,28 +55,20 @@
         ]
       }
     }),
-    methods: {
-      doRandom() {
-        const that = this;
-        let data = [];
-        for (let i = 0, min = 5, max = 99; i < 6; i++) {
-          data.push(Math.floor(Math.random() * (max + 1 - min) + min));
-        }
-        that.loading = !that.loading;
-        that.bar.series[0].data = data;
-      },
-      onReady(instance) {
-        console.log(instance);
-      },
-      onClick(event, instance, echarts) {
-        console.log(arguments);
+    mounted(){
+      console.log(this.pieData);
+    },
+    computed: {
+      getLegend: function(){
+        return this.pieData.map((item)=> {return item.name})
       }
     }
   };
 </script>
 
 <style scoped>
-  .legend{
-
+  .echarts {
+    width: 300px;
+    height: 300px;
   }
 </style>

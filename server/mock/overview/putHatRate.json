@@ -2,7 +2,42 @@
   "code": 0,
   "success": true,
   "data": {
-    "test": "test"
+    "day":[
+      {"name":"00:00", "value": 100},
+      {"name":"01:00", "value": 100},
+      {"name":"02:00", "value": 50},
+      {"name":"03:00", "value": 90},
+      {"name":"04:00", "value": 40},
+      {"name":"05:00", "value": 60},
+      {"name":"06:00", "value": 40},
+      {"name":"07:00", "value": 40},
+      {"name":"08:00", "value": 40},
+      {"name":"09:00", "value": 40},
+      {"name":"10:00", "value": 40},
+      {"name":"11:00", "value": 40}
+    ],
+    "week":[
+      {"name":"周一", "value": 40},
+      {"name":"周二", "value": 50},
+      {"name":"周三", "value": 80},
+      {"name":"周四", "value": 90},
+      {"name":"周五", "value": 40},
+      {"name":"周六", "value": 60},
+      {"name":"周日", "value": 40}
+    ],
+    "month":[
+      {"name":"1", "value": 60},
+      {"name":"2", "value": 100},
+      {"name":"3", "value": 90},
+      {"name":"4", "value": 90},
+      {"name":"5", "value": 40},
+      {"name":"6", "value": 60},
+      {"name":"7", "value": 40},
+      {"name":"8", "value": 90},
+      {"name":"9", "value": 40},
+      {"name":"10", "value": 60},
+      {"name":"11", "value": 40}
+    ]
   },
   "msg": ""
 }

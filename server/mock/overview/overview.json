@@ -1,8 +1,30 @@
 {
   "code": 0,
   "success": true,
-  "data": {
-    "test": "test"
-  },
+  "data": [{
+    "name":"异常事件总数",
+    "value": 86,
+    "unit": "个"
+  },{
+    "name":"在线总数",
+    "value": 1260,
+    "unit": "个"
+  },{
+    "name":"安全帽总量",
+    "value": 1280,
+    "unit": "个"
+  },{
+    "name":"在线班组总数",
+    "value": 64,
+    "unit": "个"
+  },{
+    "name":"总带帽量",
+    "value": 1200,
+    "unit": "个"
+  },{
+    "name":"总带帽率",
+    "value": 96,
+    "unit": "%"
+  }],
   "msg": ""
 }
