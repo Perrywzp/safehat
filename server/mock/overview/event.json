@@ -8,7 +8,10 @@
     "phone": "19385748394",
     "timeStr": "2017/07/17 12:08",
     "hatId": 8932576876455,
-    "type": 1
+    "personPic":"",
+    "type": 1,
+    "status": 1,
+    "statusStr":"已复核"
   },{
     "eventName": "安全帽离线",
     "personName": "王小三",
@@ -16,7 +19,10 @@
     "phone": "19385748394",
     "timeStr": "2017/07/17 12:00",
     "hatId": 8932576876453,
-    "type": 2
+    "personPic":"",
+    "type": 2,
+    "status": 1,
+    "statusStr":"已复核"
   },{
     "eventName": "安全帽未佩戴",
     "personName": "王小四",
@@ -24,15 +30,10 @@
     "timeStr": "2017/07/17 11:35",
     "phone": "19385748394",
     "hatId": 8932576876455,
-    "type": 3
-  },{
-    "eventName": "安全帽异常停止",
-    "personName": "王小无",
-    "groupName": "安全质量组",
-    "timeStr": "2017/07/17 10:25",
-    "phone": "19385748394",
-    "hatId": 8932576876455,
-    "type": 4
+    "personPic":"",
+    "type": 3,
+    "status": 0,
+    "statusStr":"未复核"
   },{
     "eventName": "安全帽异常撞击",
     "personName": "王小7",
@@ -40,7 +41,54 @@
     "timeStr": "2017/07/17 10:05",
     "phone": "19385748394",
     "hatId": 8932576876455,
-    "type": 5
+    "personPic":"",
+    "type": 5,
+    "status": 0,
+    "statusStr":"未复核"
+  },{
+    "eventName": "安全帽异常停止",
+    "personName": "王小无",
+    "groupName": "安全质量组",
+    "timeStr": "2017/07/17 10:25",
+    "phone": "19385748394",
+    "hatId": 8932576876455,
+    "personPic":"",
+    "type": 4,
+    "status": 0,
+    "statusStr":"未复核"
+  },{
+    "eventName": "安全帽未佩戴",
+    "personName": "王小四",
+    "groupName": "安全质量组",
+    "timeStr": "2017/07/17 11:35",
+    "phone": "19385748394",
+    "hatId": 8932576876455,
+    "personPic":"",
+    "type": 3,
+    "status": 0,
+    "statusStr":"未复核"
+  },{
+    "eventName": "安全帽异常撞击",
+    "personName": "王小7",
+    "groupName": "安全质量组",
+    "timeStr": "2017/07/17 10:05",
+    "phone": "19385748394",
+    "hatId": 8932576876455,
+    "personPic":"",
+    "type": 5,
+    "status": 0,
+    "statusStr":"未复核"
+  },{
+    "eventName": "安全帽异常停止",
+    "personName": "王小无",
+    "groupName": "安全质量组",
+    "timeStr": "2017/07/17 10:25",
+    "phone": "19385748394",
+    "hatId": 8932576876455,
+    "personPic":"",
+    "type": 4,
+    "status": 0,
+    "statusStr":"未复核"
   }],
   "msg": ""
 }

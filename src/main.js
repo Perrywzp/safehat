@@ -7,6 +7,8 @@ import Element from 'element-ui'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import 'normalize.css'
+import 'mod/element-ui/lib/theme-default/index.css'
+import 'mod/perfect-scrollbar/dist/css/perfect-scrollbar.css'
 
 Vue.config.productionTip = false
 Vue.use(Element);

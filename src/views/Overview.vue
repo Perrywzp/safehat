@@ -1,8 +1,14 @@
 <template>
   <div>
     <LayoutView>
-      <div slot="overview"></div>
-      <div slot="event"></div>
+      <div slot="overview">
+
+      </div>
+      <div slot="event">
+        <event-view  :eventData="event">
+          <h3 slot="title">事件中心</h3>
+        </event-view>
+      </div>
       <div slot="unusual">
         <pie-view :pieData="unusual">
           <h3 slot="title">异常事件</h3>
@@ -32,6 +38,7 @@
   import PieView from '../components/PieView.vue'
   import CurveView from '../components/CurveView.vue'
   import RankView from '../components/RankView.vue'
+  import EventView from '../components/EventView.vue'
   import * as OverviewApi from '../apis/overview'
   import _ from 'lodash'
   export default {
@@ -47,27 +54,28 @@
       }
     },
     created (){
-      setInterval(()=>{
+//      setInterval(()=>{
         this.axios.all(_.values(OverviewApi).map((url)=> { return this.axios.get(url)}))
           .then((results) =>{
             console.log(results);
-//            this.$nextTick(function(){
+            this.$nextTick(function(){
               this.overview = results[0].data.data; // 总览
               this.event = results[1].data.data;  // 事件中心
               this.unusual = results[2].data.data;  // 异常事件
               this.hatNum = results[3].data.data;  // 各组安全帽在线数
               this.putHatRank = results[4].data.data;  // 排名
               this.putHatRate = results[5].data.data;  // 日周月带帽率
-//            })
+            })
           })
-      }, 5000);
+//      }, 5000);
 
     },
     components:{
       LayoutView,
       PieView,
       CurveView,
-      RankView
+      RankView,
+      EventView
     }
   }
 </script>
@@ -78,5 +86,11 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 0 10px 5px 10px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    &>div{
+      height: 100%;
+    }
   }
 </style>

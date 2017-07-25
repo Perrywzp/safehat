@@ -49,12 +49,14 @@
       }
     }),
     mounted(){
-      this.line.xAxis.data = this.putHatRate.day.map(item => item.name)
-      this.line.series[0].data = this.putHatRate.day.map(item => item.value)
+      this.changeChart('day');
     },
     methods: {
       switchType(type){
         this.choseType = type;
+        this.changeChart(type);
+      },
+      changeChart(type){
         this.line.xAxis.data = this.putHatRate[type].map(item => item.name)
         this.line.series[0].data = this.putHatRate[type].map(item => item.value)
       }

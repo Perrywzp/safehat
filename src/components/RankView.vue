@@ -63,11 +63,6 @@
         type: Array,
         default:()=>{return []}
       }
-    },
-    data(){
-        return {
-
-        }
     }
   }
 </script>
