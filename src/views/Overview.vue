@@ -5,7 +5,7 @@
       <div slot="event"></div>
       <div slot="unusual">
         <pie-view :pieData="unusual">
-          <h3 slot="title">异常事件</h3>
+          <h3 slot="title">各组安全帽在线数</h3>
         </pie-view>
       </div>
       <div slot="hatNum">
