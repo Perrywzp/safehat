@@ -1,0 +1,83 @@
+{
+  "code": 0,
+  "success": true,
+  "data": {
+    "page": 0,
+    "pageSize": 10,
+    "total": 100,
+    "rows":[{
+      "mac": "00000000b0000015",
+      "battery": 0,
+      "worker": "张三",
+      "workerPhone": "12345678900",
+      "workerPicture": "http://pic.58pic.com/58pic/14/67/58/88n58PICf97_1024.jpg",
+      "wearStatus": 2,
+      "online": false,"runningTime": 0,
+      "runningStatus": 0
+    },{
+      "mac": "00000000b0000015",
+      "battery": 0,
+      "worker": "张三",
+      "workerPhone": "12345678900",
+      "workerPicture": "http://pic.58pic.com/58pic/14/67/58/88n58PICf97_1024.jpg",
+      "wearStatus": 2,
+      "online": false,"runningTime": 0,
+      "runningStatus": 0
+    },{
+      "mac": "00000000b0000015",
+      "battery": 0,
+      "worker": "张三",
+      "workerPhone": "12345678900",
+      "workerPicture": "http://pic.58pic.com/58pic/14/67/58/88n58PICf97_1024.jpg",
+      "wearStatus": 2,
+      "online": false,"runningTime": 0,
+      "runningStatus": 0
+    },{
+      "mac": "00000000b0000015",
+      "battery": 0,
+      "worker": "张三",
+      "workerPhone": "12345678900",
+      "workerPicture": "http://pic.58pic.com/58pic/14/67/58/88n58PICf97_1024.jpg",
+      "wearStatus": 2,
+      "online": false,"runningTime": 0,
+      "runningStatus": 0
+    },{
+      "mac": "00000000b0000015",
+      "battery": 0,
+      "worker": "张三",
+      "workerPhone": "12345678900",
+      "workerPicture": "http://pic.58pic.com/58pic/14/67/58/88n58PICf97_1024.jpg",
+      "wearStatus": 2,
+      "online": false,"runningTime": 0,
+      "runningStatus": 0
+    },{
+      "mac": "00000000b0000015",
+      "battery": 0,
+      "worker": "张三",
+      "workerPhone": "12345678900",
+      "workerPicture": "http://pic.58pic.com/58pic/14/67/58/88n58PICf97_1024.jpg",
+      "wearStatus": 2,
+      "online": false,"runningTime": 0,
+      "runningStatus": 0
+    },{
+      "mac": "00000000b0000015",
+      "battery": 0,
+      "worker": "张三",
+      "workerPhone": "12345678900",
+      "workerPicture": "http://pic.58pic.com/58pic/14/67/58/88n58PICf97_1024.jpg",
+      "wearStatus": 2,
+      "online": false,"runningTime": 0,
+      "runningStatus": 0
+    },{
+      "mac": "00000000b0000015",
+      "battery": 0,
+      "worker": "张三",
+      "workerPhone": "12345678900",
+      "workerPicture": "http://pic.58pic.com/58pic/14/67/58/88n58PICf97_1024.jpg",
+      "wearStatus": 2,
+      "online": false,"runningTime": 0,
+      "runningStatus": 0
+    }]
+  },
+  "msg": ""
+}

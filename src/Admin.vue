@@ -3,7 +3,7 @@
     <header class="top-nav">
       <router-link class="logo-box" :to="'/admin'">
         <img src="./assets/imgs/helmet.png" alt="">
-        <span>安全帽管理</span>
+        <span>建筑安全监控管理</span>
       </router-link>
     </header>
     <main class="layout" ref="main-lay">
