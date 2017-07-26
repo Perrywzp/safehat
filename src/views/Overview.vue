@@ -1,8 +1,16 @@
 <template>
   <div>
     <LayoutView>
-      <div slot="overview"></div>
-      <div slot="event"></div>
+      <div slot="overview">
+        <head-view :pieData="overview">
+          <h3 slot="title">安全帽总览</h3>
+        </head-view>
+      </div>
+      <div slot="eventCenter">
+        <event-center :pieData="eventCenter">
+          <h3 slot="title">事件中心</h3>
+        </event-center>
+      </div>
       <div slot="unusual">
         <pie-view :pieData="unusual">
           <h3 slot="title">各组安全帽在线数</h3>
@@ -32,6 +40,8 @@
   import PieView from '../components/PieView.vue'
   import CurveView from '../components/CurveView.vue'
   import RankView from '../components/RankView.vue'
+  import HeadView from '../components/HeadView.vue'
+  import EventCenter from '../components/EventCenter.vue'
   import * as OverviewApi from '../apis/overview'
   import _ from 'lodash'
   export default {
@@ -39,11 +49,11 @@
     data () {
       return {
         overview: [],
-        event: [],
+        eventCenter: [],
         unusual: null,
         hatNum: null,
         putHatRank: null,
-        putHatRate: null,
+        putHatRate: null
       }
     },
     created (){
@@ -53,7 +63,7 @@
             console.log(results);
 //            this.$nextTick(function(){
               this.overview = results[0].data.data; // 总览
-              this.event = results[1].data.data;  // 事件中心
+              this.eventCenter = results[1].data.data;  // 事件中心
               this.unusual = results[2].data.data;  // 异常事件
               this.hatNum = results[3].data.data;  // 各组安全帽在线数
               this.putHatRank = results[4].data.data;  // 排名
@@ -67,7 +77,9 @@
       LayoutView,
       PieView,
       CurveView,
-      RankView
+      RankView,
+      HeadView,
+      EventCenter
     }
   }
 </script>
