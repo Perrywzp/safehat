@@ -1,26 +1,26 @@
 <template>
   <div>
-      <slot name="title"></slot>
-      <div class="eventWrap">
-        <div class="eventList" v-for="item in pieData">
+    <slot name="title"></slot>
+    <div class="eventList" v-for="(item,index) in pieData" :class="activeEvent == index ? 'active' : ''" @click="chooseEvent(index)">
+        <div class="eventImg">
             <img src="http://obkwv73yp.bkt.clouddn.com/huge.jpeg" />
-            <div class="eventInfo">
-                <div class="infoHead">
-                    <img src="http://obkwv73yp.bkt.clouddn.com/low_power.png" />
-                    <h4>{{item.eventName}}</h4>
-                    <span>{{item.timeStr}}</span>
-                </div>
-                <div class="infoDetail">
-                    <ul>
-                        <li>人员姓名:{{item.personName}}</li>
-                        <li>所在班组:{{item.groupName}}</li>
-                        <li>联系方式:{{item.phone}}</li>
-                        <li>安全帽编号:{{item.hatId}}</li>
-                    </ul>
-                </div>
+        </div>
+        <div class="eventInfo">
+            <div class="infoHead">
+                <img src="http://obkwv73yp.bkt.clouddn.com/low_power.png" />
+                <h4>{{item.eventName}}</h4>
+                <span>{{item.timeStr}}</span>
+            </div>
+            <div class="infoDetail">
+                <ul>
+                    <li>人员姓名:{{item.personName}}</li>
+                    <li>所在班组:{{item.groupName}}</li>
+                    <li>联系方式:{{item.phone}}</li>
+                    <li>安全帽编号:{{item.hatId}}</li>
+                </ul>
             </div>
         </div>
-      </div>
+    </div>
   </div>
 </template>
 
@@ -32,51 +32,116 @@
             pieData: {
                 type: Array
             }
+        },
+        data: () =>({
+            activeEvent: 0
+        }),
+        methods: {
+            chooseEvent(index){
+                this.activeEvent = index;
+            }
         }
     }
 </script>
 
 <style scoped lang="less">
-    .eventWrap {
-        height: 715px;
-        overflow: auto;
-        .eventList {
-            border: 2px solid #666;
-            padding: 20px;
-            margin-bottom: 12px;
+    .eventList {
+        transition: all .5s;
+        border: 2px solid #666;
+        margin-bottom: 12px;
+        .eventImg {
+            width: 20%;
+            display: inline-block;
+            padding: 10px 0 0 20px;
             img {
-                width: 156px;
-                height: 156px;
+                width: 75px;
+                height: 75px;
             }
-            .eventInfo {
-                width: 69%;
+        }
+        .eventInfo {
+            display: inline-block;
+            width: 70%;
+            .infoHead {
+                position: relative;
+                top: -10px;
+                vertical-align: middle;
+                img {
+                    width: 40px;
+                    height: auto;
+                    vertical-align: middle;
+                }
+                h4 {
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+                span {
+                    display: inline-block;
+                    position: relative;
+                    right: -100px;
+                    vertical-align: middle;
+                }
+            }
+            .infoDetail {
+                position: relative;
+                top: -10px;
+                ul {
+                    list-style: none;
+                    margin-top: -1px;
+                    padding-bottom: 3px;
+                    :nth-child(1),
+                    :nth-child(2),
+                    :nth-child(4){
+                        display: none;
+                    }
+                }
+            }
+        }
+        &.active {
+            box-shadow: 10px 10px 5px #888888;
+            .eventImg {
+                width: 30%;
                 display: inline-block;
-                float: right;
+                padding: 20px 0 0 20px;
+                img {
+                    width: 156px;
+                    height: 156px;
+                }
+            }
+             .eventInfo {
+                display: inline-block;
+                width: 60%;
                 .infoHead {
                     position: relative;
+                    top: -30px;
+                    vertical-align: middle;
                     img {
                         width: 40px;
                         height: auto;
-                        margin-right: 7px;
+                        vertical-align: middle;
                     }
                     h4 {
                         display: inline-block;
-                        position: absolute;
-                        top: -10px;
+                        vertical-align: middle;
                     }
                     span {
                         display: inline-block;
-                        float: right;
-                        position: absolute;
-                        top: 10px;
-                        right: 10px;
+                        position: relative;
+                        right: -100px;
+                        vertical-align: middle;
                     }
                 }
                 .infoDetail {
+                    position: relative;
+                    top: -30px;
                     ul {
-                        list-style: none;
                         li {
-                            padding: 2px 0 2px 0;
+                            padding-bottom: 2px;
+                        }
+                        list-style: none;
+                        :nth-child(1),
+                        :nth-child(2),
+                        :nth-child(4){
+                            display: block;
                         }
                     }
                 }
