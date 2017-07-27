@@ -85,6 +85,7 @@
   @import '../assets/font/ds-digital/ds-ditital.css';
   .main-bg{
     background: url("/static/image/bg.jpg") 0 0 no-repeat;
+    margin-top:100px;
   }
   .fill-10 {
     border: 1px solid #ccc;
