@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-bg">
     <LayoutView>
       <div slot="overview">
       </div>
@@ -92,6 +92,9 @@
     &>div{
       height: 100%;
     }
+  }
+  .main-bg{
+    background: #fff;
   }
 
 </style>
