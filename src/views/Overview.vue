@@ -2,7 +2,6 @@
   <div class="main-bg">
     <LayoutView>
       <div slot="overview">
-
       </div>
       <div slot="event">
         <event-view  :eventData="event">
@@ -94,11 +93,4 @@
       height: 100%;
     }
   }
-  .main-bg{
-    background: #fff;
-  }
-  .test-origin{
-    background: #fff;
-  }
-
 </style>
