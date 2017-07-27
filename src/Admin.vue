@@ -8,7 +8,7 @@
     </header>
     <main class="layout" ref="main-lay">
       <aside class="menu">
-        <el-menu default-active="/admin/helmet" router theme="dark">
+        <el-menu :default-active="$route.path" router theme="dark">
           <el-menu-item index="/admin/helmet" > 安全帽配置 </el-menu-item>
           <el-menu-item index="/admin/group"> 分组管理 </el-menu-item>
           <el-menu-item index="/admin/gateway"> 网关设置 </el-menu-item>
