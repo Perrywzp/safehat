@@ -126,7 +126,7 @@
                     span {
                         display: inline-block;
                         position: relative;
-                        right: -100px;
+                        right: -90px;
                         vertical-align: middle;
                     }
                 }
