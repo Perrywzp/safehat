@@ -86,6 +86,7 @@
   .main-bg{
     background: url("/static/image/bg.jpg") 0 0 no-repeat;
     margin-top:100px;
+    padding: 0;
   }
   .fill-10 {
     border: 1px solid #ccc;
