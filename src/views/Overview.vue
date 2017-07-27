@@ -1,8 +1,7 @@
 <template>
-  <div class="main-bg">
+  <div>
     <LayoutView>
       <div slot="overview">
-        <div class="test-font">1123123123</div>
       </div>
       <div slot="event">
         <event-view  :eventData="event">
@@ -83,9 +82,6 @@
 <style scoped lang="less">
   @import '../common/css/grid-layout.css';
   @import '../assets/font/ds-digital/ds-ditital.css';
-  .main-bg{
-    background: url("/static/image/bg.jpg") 0 0 no-repeat;
-  }
   .fill-10 {
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -96,11 +92,6 @@
     &>div{
       height: 100%;
     }
-  }
-  .test-font{
-    font-family: 'ds-digital';
-    font-size: 90px;
-    color: orange;
   }
 
 </style>
