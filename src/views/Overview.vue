@@ -4,6 +4,7 @@
       <div slot="overview">
         <div class="test-origin">
           这里是master上改动的代码...希望在分支上得以合并
+          现在在master上加点东西, 让暴风雨来的更猛烈些吧!
         </div>
       </div>
       <div slot="event">
@@ -95,6 +96,10 @@
     &>div{
       height: 100%;
     }
+  }
+
+  .master-css{
+    color: red;
   }
 
 </style>
