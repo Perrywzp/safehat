@@ -3,7 +3,7 @@
     <!--安全帽总览-->
     <div class="gl-xs-w-12 gl-xs-h-2 gl-xs-x-0 gl-xs-y-0">
       <div class="fill-10">
-        <slot name="overview"></slot>
+        <slot name="summary"></slot>
       </div>
     </div>
     <!--事件中心-->

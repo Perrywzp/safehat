@@ -1,8 +1,11 @@
 <template>
   <div class="main-bg">
     <LayoutView>
-      <div slot="overview">
-        <div class="test-font">1123123123</div>
+      <div slot="summary">
+        <Summary  :summary="summary">
+          <h3 slot="title">总览</h3>
+        </Summary>
+        <!-- <div class="test-font">1123123123</div> -->
       </div>
       <div slot="event">
         <event-view  :eventData="event">
@@ -35,6 +38,7 @@
 
 <script>
   import LayoutView from '../components/LayoutView.vue'
+  import Summary from '../components/Summary.vue'
   import PieView from '../components/PieView.vue'
   import CurveView from '../components/CurveView.vue'
   import RankView from '../components/RankView.vue'
@@ -45,7 +49,7 @@
     name: 'Overview',
     data () {
       return {
-        overview: [],
+        summary: [],
         event: [],
         unusual: null,
         hatNum: null,
@@ -59,7 +63,7 @@
           .then((results) =>{
             console.log(results);
             this.$nextTick(function(){
-              this.overview = results[0].data.data; // 总览
+              this.summary = results[0].data.data; // 总览
               this.event = results[1].data.data;  // 事件中心
               this.unusual = results[2].data.data;  // 异常事件
               this.hatNum = results[3].data.data;  // 各组安全帽在线数
@@ -72,6 +76,7 @@
     },
     components:{
       LayoutView,
+      Summary,
       PieView,
       CurveView,
       RankView,
@@ -84,25 +89,27 @@
   @import '../common/css/grid-layout.css';
   @import '../assets/font/ds-digital/ds-ditital.css';
   .main-bg{
-    background: url("/static/image/bg.jpg") 0 0 no-repeat;
-    margin-top:100px;
-    padding: 0;
-  }
-  .fill-10 {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 0 10px 5px 10px;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    &>div{
-      height: 100%;
+    background: url("../../static/image/bg.jpg") 0 0 no-repeat;
+    height:1080px;
+    width: 1920px;
+    position: relative;
+    .fill-10 {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 0 10px 5px 10px;
+      box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      &>div{
+        height: 100%;
+      }
+    }
+    .test-font{
+      font-family: 'ds-digital';
+      font-size: 90px;
+      color: orange;
     }
   }
-  .test-font{
-    font-family: 'ds-digital';
-    font-size: 90px;
-    color: orange;
-  }
+  
 
 </style>
