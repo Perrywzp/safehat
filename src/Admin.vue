@@ -23,6 +23,14 @@
 <script>
   export default{
   	name: 'admin',
+    data() {
+      return {
+        
+      }
+    },
+    methods: {
+      
+    },
     mounted(){
   		// 设置高度
       this.$refs["main-lay"].style.height = (document.documentElement.clientHeight - 85 ) +'px';
