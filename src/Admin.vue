@@ -8,8 +8,8 @@
     </header>
     <main class="layout" ref="main-lay">
       <aside class="menu">
-        <el-menu default-active="/admin/helmet" router theme="dark">
-          <el-menu-item index="/admin/helmet" > 安全帽配置 </el-menu-item>
+        <el-menu :default-active="this.$route.path" @select="selectItems" router theme="dark">
+          <el-menu-item index="/admin/helmet"> 安全帽配置 </el-menu-item>
           <el-menu-item index="/admin/group"> 分组管理 </el-menu-item>
           <el-menu-item index="/admin/gateway"> 网关设置 </el-menu-item>
         </el-menu>
@@ -23,6 +23,16 @@
 <script>
   export default{
   	name: 'admin',
+    data() {
+      return {
+        
+      }
+    },
+    methods: {
+      selectItems(index){
+        
+      }
+    },
     mounted(){
   		// 设置高度
       this.$refs["main-lay"].style.height = (document.documentElement.clientHeight - 85 ) +'px';

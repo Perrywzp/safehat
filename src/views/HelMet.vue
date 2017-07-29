@@ -50,6 +50,7 @@
             <span>{{wearStatusArr[scope.row.wearStatus]}}</span>
           </template>
         </el-table-column>
+        <el-table-column align="center" prop="battery" label="电量" width="80"></el-table-column>
         <el-table-column align="center" prop="online" label="离/在线">
           <template scope="scope">
             <span :style="{color: scope.row.online ? 'green': 'red'}">{{scope.row.online ? '在线' : '离线'}}</span>
