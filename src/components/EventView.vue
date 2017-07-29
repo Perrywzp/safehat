@@ -3,7 +3,7 @@
     <slot name="title"></slot>
     <div class="scroll-box" ref="scrollBox">
       <ul>
-        <li v-for="(item, index) in eventData" >
+        <li v-for="(item, index) in eventData" :class="[{'icons-event-hoverbg':ind === index},{'icons-event-usualbg':ind !== index}]"  v-on:mouseenter="eventChose(index)">
           <div class="avatar">
             <img :src="item.personPic" :alt="item.personName" @error="setDftImg">
             <span class="status">{{item.statusStr}}</span>
@@ -11,10 +11,10 @@
           <div class="icon"><i></i></div>
           <div class="content">
             <h3>{{item.eventName}}</h3>
-            <span class="text">人员姓名:{{item.personName}}</span>
-            <span class="text">所在班组:{{item.groupName}}</span>
-            <span class="text" v-if="index==0">联系方式:{{item.phone}}</span>
-            <span class="text" v-if="index==0">安全帽编号:{{item.hatId}}</span>
+            <span v-if="index===ind">{{item.personName}} </span>
+            <span v-if="index===ind"> {{item.groupName}}</span>
+            <span class="span-block">{{item.phone}}</span>
+            <span class="span-block" v-if="index==ind">安全帽编号:{{item.hatId}}</span>
           </div>
           <div class="time">{{item.timeStr}}</div>
         </li>
@@ -24,43 +24,47 @@
 </template>
 
 <style scoped lang="less">
+@import '../common/less/icons.less';
   .event-box{
     margin-right: -8px;
+    color: #fff;
   }
   .scroll-box{
     position: relative;
-    height: 760px;
+    height: 700px;
+    width: 592px;
   }
   ul{
     display: block;
     list-style: none;
-    margin: 0;
+    margin:  0 0 0 32px;
     padding: 0 16px 0 0;
+    width: 560px;
   }
   li{
-    &:first-child{
-      .avatar {
-        width: 150px;
-        height: 150px;
-      }
-    }
+    // &.active{
+    //   // .avatar {
+    //   //   width: 150px;
+    //   //   height: 150px;
+    //   // }
+    // }
     position: relative;
-    border: 1px solid #ccc;
+    //border: 1px solid #ccc;
     border-radius: 5px;
     margin-bottom: 10px;
-    padding: 15px 20px;
+    padding: 8px 18px;
     .avatar{
       position: relative;
-      width: 90px;
-      height: 90px;
+      width: 53px;
+      height: 69px;
       img{
         width: 100%;
         height: 100%;
       }
       .status{
         position: absolute;
-        right: 0;
-        bottom: 0;
+        right: -452px;
+        bottom: 11px;
         background: #ccc;
         color: #333;
       }
@@ -80,14 +84,60 @@
         margin:0;
         padding: 0;
       }
-      .text{
-        display: inline-block;
+      .span-block{
+        display: block;
       }
     }
     .time{
+      font-size: 14px;
       position: absolute;
       right: 10px;
-      top: 20px;
+      top: 18px;
+    }
+  }
+  .icons-event-hoverbg{
+    margin-left:7px; 
+    .avatar {
+      width: 119px;
+      height: 150px;
+      margin-top:8px;
+      .status{
+        right: -386px;
+        bottom:73px;
+      }
+    }
+    .icon{
+      background-position: -508px 0;
+      width:34px;
+      height:34px;
+    }
+    
+    .content{
+      h3{
+        color: red;
+        font-size:24px;
+        padding:15px 0;
+      }
+      span{
+        &:nth-child(2){
+          font-size:28px;
+        }
+        &:nth-child(4){
+          font-size:32px;
+          padding:5px 0;
+        }
+        &:nth-child(5){
+          padding:5px 0;
+          color: red;
+        }
+      }
+    } 
+  }
+  .icons-event-usualbg{
+    margin-left:7px;
+    .icon{
+      width:57px;
+      height:57px;
     }
   }
 </style>
@@ -102,13 +152,21 @@
         default(){return []}
       }
     },
+    data(){
+          return{
+              ind:0
+          }     
+        },
     methods: {
+      eventChose(index){
+        this.ind = index;
+      },
     	setDftImg(e){
         e.target.src= require('../assets/imgs/avatar.jpg')
       }
     },
     mounted(){
-    	PS.initialize(this.$refs.scrollBox,{scrollYMarginOffset: 20});
+    	PS.initialize(this.$refs.scrollBox,{scrollYMarginOffset: 20,suppressScrollX:true});
     }
   }
 </script>

@@ -2,11 +2,16 @@
   <div>
     <div class="title">
       <slot name="title"></slot>
-      <ul class="switch-btn">
-        <li :class="{active:choseType=='day'}" @click="switchType('day')">日</li>
-        <li :class="{active:choseType=='week'}" @click="switchType('week')">周</li>
-        <li :class="{active:choseType=='month'}" @click="switchType('month')">月</li>
-      </ul>
+      <div class="switch-box">
+        <div class="icons-switch-bg">
+          <ul class="switch-btn">
+            <li :class="{active:choseType=='day'}" @click="switchType('day')">日</li>
+            <li :class="{active:choseType=='week'}" @click="switchType('week')">周</li>
+            <li :class="{active:choseType=='month'}" @click="switchType('month')">月</li>
+          </ul>
+        </div>
+      </div>
+      
     </div>
     <div class="echarts">
       <IEcharts :option="line" :resizable="true"></IEcharts>
@@ -30,15 +35,34 @@
     },
     data: () => ({
       choseType: 'day',
+      
       line: {
+        // legend:{
+        //   textStyle:{    //图例文字的样式
+        //     color:'#fff',
+        //     fontSize:12
+        //   }
+        // },
         xAxis: {
           type: 'category',
           boundaryGap: false,
+          axisLabel: {
+            textStyle: {
+                color: '#fff',
+                //fontSize:'16'
+            }
+          },    
           data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
         },
 
         yAxis: {
-          type: 'value'
+          type: 'value',
+          axisLabel: {
+            textStyle: {
+                color: '#fff',
+                //fontSize:'16'
+            }
+          },
         },
         series: [
           {
@@ -65,49 +89,59 @@
 </script>
 
 <style scoped lang="less">
+@import '../common/less/icons.less';
   .echarts {
-    width: 450px;
-    height: 250px;
+    width: 770px;
+    height: 320px;
   }
 
   .title {
     position: relative;
-    height: 45px;
-    line-height: 45px;
+    height: 36px;
+    line-height: 36px;
   }
-
-  ul.switch-btn {
+  .switch-box{
     position: absolute;
     top:0;
-    right: 0;
-    display: block;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    width: 165px;
-    height: 45px;
-    line-height: 45px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    li {
-      float: left;
-      cursor: pointer;
-      width: 53px;
-      height: 44px;
+    right: 0px;
+    width: 208px;
+    height: 36px;
+    ul.switch-btn { 
+      // position: absolute;
+      
+      // right: 0;
+      display: block;
       padding: 0;
       margin: 0;
-      line-height: 44px;
-      text-align: center;
-      border-right: 1px solid #ccc;
-      &:last-child {
-        border-right: none;
-      }
-      &.active {
-        color: red;
+      list-style: none;
+      box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      width: 208px;
+      height: 36px;
+      //line-height: 36px;
+      //border-radius: 5px;
+      //border: 1px solid #ccc;
+      li {
+        color: #fff;
+        float: left;
+        cursor: pointer;
+        width: 68px;
+        height: 36px;
+        padding: 0;
+        margin: 0;
+        line-height: 36px;
+        text-align: center;
+        //border-right: 1px solid #ccc;
+        // &:last-child {
+        //   border-right: none;
+        // }
+        &.active {
+          color:blue;
+          background-color:rgba(0,0,0,0.5); 
+        }
       }
     }
   }
+  
 </style>

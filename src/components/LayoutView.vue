@@ -32,7 +32,7 @@
       </div>
     </div>
     <!--日周月带帽率-->
-    <div class="gl-xs-w-4 gl-xs-h-5 gl-xs-x-8 gl-xs-y-7">
+    <div class="gl-xs-w-4 gl-xs-h-5 gl-xs-x-7 gl-xs-y-7">
       <div class="fill-10">
         <slot name="putHatRate"></slot>
       </div>
