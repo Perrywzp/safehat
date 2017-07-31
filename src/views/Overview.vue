@@ -38,12 +38,9 @@
   import PieView from '../components/PieView.vue'
   import CurveView from '../components/CurveView.vue'
   import RankView from '../components/RankView.vue'
-<<<<<<< HEAD
   import EventView from '../components/EventView.vue'
-=======
   import HeadView from '../components/HeadView.vue'
-  import EventCenter from '../components/EventCenter.vue'
->>>>>>> yuan
+//  import EventCenter from '../components/EventCenter.vue'
   import * as OverviewApi from '../apis/overview'
   import _ from 'lodash'
   export default {
@@ -65,7 +62,7 @@
             console.log(results);
             this.$nextTick(function(){
               this.overview = results[0].data.data; // 总览
-              this.eventCenter = results[1].data.data;  // 事件中心
+              this.event = results[1].data.data;  // 事件中心
               this.unusual = results[2].data.data;  // 异常事件
               this.hatNum = results[3].data.data;  // 各组安全帽在线数
               this.putHatRank = results[4].data.data;  // 排名
@@ -80,12 +77,8 @@
       PieView,
       CurveView,
       RankView,
-<<<<<<< HEAD
-      EventView
-=======
-      HeadView,
-      EventCenter
->>>>>>> yuan
+      EventView,
+      HeadView
     }
   }
 </script>

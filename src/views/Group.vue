@@ -74,7 +74,7 @@
       </el-pagination>
     </div>
     <el-dialog title="添加队伍" :visible.sync="groupDialog">
-      <el-form :model="groupFormData" ref="groupForm" :rules="groupFormRules">
+      <el-form :model="groupFormData" ref="groupForm" :rules="groupFormRules" class="dialog-body">
         <el-form-item label="队伍名称:" prop="name" :label-width="formLabelWidth">
           <el-input class="input-content" v-model="groupFormData.name"></el-input>
         </el-form-item>
@@ -145,6 +145,11 @@
   .pagination {
     float: right;
     padding-top: 10px;
+  }
+  .dialog-body{
+    height: 600px;
+    display: block;
+    overflow: auto;
   }
 </style>
 
