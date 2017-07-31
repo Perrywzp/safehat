@@ -13,12 +13,12 @@
         </event-view>
       </div>
       <div slot="unusual" class="unusual-box">
-        <pie-view :pieData="unusual" :colors="unusualColors" :pos="{'left': 70, 'bottom': -2}" :echartsPos="{'marginLeft':280,'marginTop':16}">
+        <pie-view :pieData="unusual" :colors="unusualColors" :pos="{'left': 67, 'bottom': -5}" :echartsPos="{'marginLeft':280,'marginTop':16}">
           <!-- <h3 slot="title">异常事件</h3> -->
         </pie-view>
       </div>
       <div slot="hatNum" class="hatNum-box" ref='hatNum-box'>
-        <pie-view :colors="hatNumColors" :pieData="hatNum" :pos="{'left': 352, 'bottom': -2}" :echartsPos="{'marginLeft':41,'marginTop':17}">
+        <pie-view :colors="hatNumColors" :pieData="hatNum" :pos="{'left': 348, 'bottom': -5}" :echartsPos="{'marginLeft':41,'marginTop':17}">
           <!-- <h3 slot="title">各组安全帽在线数</h3> -->
         </pie-view>
       </div>
@@ -75,9 +75,9 @@
           })
 //      }, 5000);
 
-      this.unusualColors = ['#ccc','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3'];
+      this.unusualColors = ['#ffea3e','#ffb901', '#24c7c6', '#6060ff', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3'];
       //console.log(this.colors);
-      this.hatNumColors = ['#fff','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3'];
+      this.hatNumColors = ['#feea3d','#ffb901', '#ff7345', '#2cda97', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3'];
 
 
     },
@@ -87,17 +87,14 @@
       PieView,
       CurveView,
       RankView,
-      EventView
-    },
-    mounted(){
-      // console.log(this.$children.$refs.legend.top);
+      EventView,
     }
   }
 </script>
 
 <style scoped lang="less">
   @import '../common/css/grid-layout.css';
-  @import '../assets/font/ds-digital/ds-ditital.css';
+  //@import '../assets/font/ds-digital/ds-ditital.css';
   //@import '../common/less/icons.less';
   .main-bg{
     background: url("../../static/image/bg.jpg") 0 0 no-repeat;
@@ -124,25 +121,19 @@
       .unusual-box{
         padding-top:174px;
       }
-       .hatNum-box{
+      .hatNum-box{
          padding-top:174px;
-      //   margin-top:164px;
-      //   .echarts{
-      //     margin-top:10px;
-      //   }
-      //   .legend{
-      //     left:405px;
-      //   }
-       }
+      }
       .putHatRank{
-        margin-top:135px;
+        margin-top:120px;
         padding-left: 50px;
+        height:290px;
       }
       .putHatRate{
         width: 690px;
         height: 320px;
-        margin-top:60px;
-        margin-right: 67px;
+        margin-top:53px;
+        margin-right: -27px;
       }
     }
     // .test-font{

@@ -1,7 +1,7 @@
 /**
  * Created by wangzhipei on 2017/7/20.
  */
-export const overview = '/api/overview/overview'
+export const summary = '/api/overview/overview'
 // node端模拟接口
 //事件中心 &所有异常事件
 //异常事件

@@ -10,11 +10,17 @@
         <span>{{item.name}}</span>
         <strong>{{item.value}}</strong>
       </li>
+      <li v-for="(item,index) in pieData">
+        <span class="legend-span" v-bind:style="{backgroundColor:colors[index]}" ></span>
+        <span>{{item.name}}</span>
+        <strong>{{item.value}}</strong>
+      </li>
     </ul>
   </div>
 </template>
 
-<script type="text/babel">
+ <script type="text/babel">
+  import PS from 'perfect-scrollbar'
   import IEcharts from 'vue-echarts-v3/src/full.vue';
   export default {
     name: 'PieView',
@@ -60,6 +66,10 @@
 
       console.log(length);
 
+      PS.initialize(this.$refs.pieDom,{
+        minScrollbarLength:20
+      });
+
 
     },
     computed: {
@@ -77,13 +87,20 @@
                 center: ['50%', '50%'],
                 radius:['51%','89%'],
                 data: this.pieData,
-                itemStyle: {
-                  emphasis: {
-                    shadowBlur: 10,
-                    shadowOffsetX: 0,
-                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                label:{
+                  normal:{
+                    show:false
                   }
-                }
+                },
+                // itemStyle: {
+                //   labelLine:false
+                //   // emphasis: {
+                //   //   shadowBlur: 10,
+                //   //   shadowOffsetX: 0,
+                //   //   shadowColor: 'rgba(0, 0, 0, 0.5)'
+                //   // }
+                   
+                // }
               }
             ]
           }
@@ -101,8 +118,8 @@
   }
   .legend{
     position: absolute;
-    // left: 121px;
-    // bottom: 12px;
+    height: 121px;
+    overflow: hidden;
     padding: 0;
     width: 160px;
     li{
@@ -114,11 +131,12 @@
         display: inline-block;
         width: 12px;
         height: 12px;
-        //background-color: #ccc;
+        margin-right:10px;
       }
       strong{
         position: absolute;
         right:0;
+        color: #02f0fd;
       }      
     }
   }

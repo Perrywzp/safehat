@@ -8,9 +8,12 @@
             <img :src="item.personPic" :alt="item.personName" @error="setDftImg">
             <span class="status">{{item.statusStr}}</span>
           </div>
-          <div class="icon"><i></i></div>
+          <!-- <div class="icon" :class="[{'icons-event-hovericon':ind === index},{'icons-event-usualicon':ind !== index}]"><i></i></div> -->
           <div class="content">
-            <h3>{{item.eventName}}</h3>
+            <div>
+              <h3>{{item.eventName}}</h3> 
+              <div class="icon" :class="[{['icons-event-hovericon'+item.type]:ind === index},{['icons-event-usualicon'+item.type]:ind !== index}]"><i></i></div> 
+            </div>
             <span v-if="index===ind">{{item.personName}} </span>
             <span v-if="index===ind"> {{item.groupName}}</span>
             <span class="span-block">{{item.phone}}</span>
@@ -35,21 +38,15 @@
     width: 592px;
   }
   ul{
+    border-top:3px solid #4EC6FE;
     display: block;
     list-style: none;
-    margin:  0 0 0 32px;
+    margin:  0 0 0 36px;
     padding: 0 16px 0 0;
     width: 560px;
   }
   li{
-    // &.active{
-    //   // .avatar {
-    //   //   width: 150px;
-    //   //   height: 150px;
-    //   // }
-    // }
     position: relative;
-    //border: 1px solid #ccc;
     border-radius: 5px;
     margin-bottom: 10px;
     padding: 8px 18px;
@@ -65,22 +62,16 @@
         position: absolute;
         right: -452px;
         bottom: 11px;
-        background: #ccc;
-        color: #333;
+        color: #fff;
       }
     }
     &>div{
       display: inline-block;
       vertical-align: top;
     }
-    .icon{
-      width: 35px;
-    }
     .content{
       width: 250px;
       h3{
-        height: 25px;
-        line-height: 25px;
         margin:0;
         padding: 0;
       }
@@ -91,12 +82,11 @@
     .time{
       font-size: 14px;
       position: absolute;
-      right: 10px;
-      top: 18px;
+      
     }
   }
   .icons-event-hoverbg{
-    margin-left:7px; 
+    margin-left:5px; 
     .avatar {
       width: 119px;
       height: 150px;
@@ -104,41 +94,68 @@
       .status{
         right: -386px;
         bottom:73px;
+        color: #02f0fd;
       }
     }
-    .icon{
-      background-position: -508px 0;
-      width:34px;
-      height:34px;
-    }
-    
     .content{
+      padding-left:17px;
       h3{
-        color: red;
+        height: 24px;
+        line-height: 24px;
+        display: inline-block;
+        color: #FF3459;
         font-size:24px;
-        padding:15px 0;
+        padding:10px 0 20px 0;
+        margin-bottom:5px;
+      }
+      .icon{
+        vertical-align: bottom;
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        margin-bottom: 20px;
+        margin-left: 5px;
       }
       span{
         &:nth-child(2){
-          font-size:28px;
+          font-size:24px;
         }
         &:nth-child(4){
           font-size:32px;
-          padding:5px 0;
+          padding:10px 0;
         }
         &:nth-child(5){
-          padding:5px 0;
-          color: red;
+          color: #24c4fe;
         }
       }
     } 
+    .time{
+      right: 14px;
+      top: 24px;
+    }
   }
   .icons-event-usualbg{
     margin-left:7px;
-    .icon{
-      width:57px;
-      height:57px;
+    .content{
+      padding-left:81px;
+      .icon{
+        position: absolute;
+        top:14px;
+        left:84px;
+      }
+      h3{
+        color:#02f0fd;
+        margin-top:3px;
+      }
+      span.span-block{
+        padding:14px 0;
+      }
+    }   
+    .time{
+      right: 19px;
+      top: 15px;
     }
+    
   }
 </style>
 

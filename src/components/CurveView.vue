@@ -23,6 +23,7 @@
 
 <script type="text/babel">
   import IEcharts from 'vue-echarts-v3/src/full.vue';
+  import Echarts from 'echarts';
   export default {
     name: 'CurveView',
     components: {
@@ -34,18 +35,23 @@
       }
     },
     data: () => ({
-      choseType: 'day',
+      choseType:'week',
       
       line: {
-        // legend:{
-        //   textStyle:{    //图例文字的样式
-        //     color:'#fff',
-        //     fontSize:12
-        //   }
-        // },
+        grid:{
+          show:true,
+          borderColor:'#34508C',
+          // backgroundColor:'#34508C'
+        },
         xAxis: {
           type: 'category',
           boundaryGap: false,
+          splitLine:{  
+            show:true,
+            lineStyle:{
+              color: '#34508C'
+            }
+          },
           axisLabel: {
             textStyle: {
                 color: '#fff',
@@ -57,6 +63,12 @@
 
         yAxis: {
           type: 'value',
+          splitLine:{  
+            show:true,
+            lineStyle:{
+              color: '#34508C'
+            }
+          },
           axisLabel: {
             textStyle: {
                 color: '#fff',
@@ -67,14 +79,29 @@
         series: [
           {
             type: 'line',
+            symbol:'none',//去掉点
+            smooth:true,
+            itemStyle:{
+              normal:{
+                areaStyle:{
+                  type:'default',
+                  color: new Echarts.graphic.LinearGradient(
+                    0, 0, 0, 1,
+                    [
+                        {offset: 0, color: 'rgba(255,0,0,1)'},
+                        {offset: 0.7, color: 'rgba(55,29,86,0.7)'},
+                        {offset: 1, color: 'rgba(0,0,0,0)'}
+                    ]
+                  )
+                }
+              }
+            },
             data: [5, 20, 36, 10, 10, 20]
           }
         ]
       }
     }),
-    mounted(){
-      this.changeChart('day');
-    },
+
     methods: {
       switchType(type){
         this.choseType = type;
@@ -84,6 +111,9 @@
         this.line.xAxis.data = this.putHatRate[type].map(item => item.name)
         this.line.series[0].data = this.putHatRate[type].map(item => item.value)
       }
+    },
+     mounted(){
+      this.switchType("week");
     }
   };
 </script>
@@ -92,7 +122,7 @@
 @import '../common/less/icons.less';
   .echarts {
     width: 770px;
-    height: 320px;
+    height: 344px;
   }
 
   .title {
@@ -107,9 +137,6 @@
     width: 208px;
     height: 36px;
     ul.switch-btn { 
-      // position: absolute;
-      
-      // right: 0;
       display: block;
       padding: 0;
       margin: 0;
@@ -119,9 +146,6 @@
       -moz-box-sizing: border-box;
       width: 208px;
       height: 36px;
-      //line-height: 36px;
-      //border-radius: 5px;
-      //border: 1px solid #ccc;
       li {
         color: #fff;
         float: left;
@@ -132,13 +156,9 @@
         margin: 0;
         line-height: 36px;
         text-align: center;
-        //border-right: 1px solid #ccc;
-        // &:last-child {
-        //   border-right: none;
-        // }
         &.active {
-          color:blue;
-          background-color:rgba(0,0,0,0.5); 
+          color:#20f0fd;
+          background-color:rgba(116,180,220,0.2); 
         }
       }
     }
