@@ -9,7 +9,7 @@
     <!--事件中心-->
     <div class="gl-xs-w-4 gl-xs-h-10 gl-xs-x-0 gl-xs-y-2">
       <div class="fill-10">
-        <slot name="event"></slot>
+        <slot name="eventCenter"></slot>
       </div>
     </div>
     <!--异常事件-->
