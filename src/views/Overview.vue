@@ -45,6 +45,8 @@
   import CurveView from '../components/CurveView.vue'
   import RankView from '../components/RankView.vue'
   import EventView from '../components/EventView.vue'
+  import HeadView from '../components/HeadView.vue'
+//  import EventCenter from '../components/EventCenter.vue'
   import * as OverviewApi from '../apis/overview'
   import _ from 'lodash'
   import PS from 'perfect-scrollbar'
@@ -94,6 +96,7 @@
     },
     mounted(){
       PS.initialize(this.$refs.mainScroll);
+      //HeadView
     }
   }
 </script>
@@ -107,58 +110,58 @@
   //   width: 100%;
     
   // }
-.main-scroll{
-  position: relative;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  
-  .main-bg{
-    background: url("../../static/image/bg.jpg") 0 0 no-repeat;
-    height:1080px;
-    width: 1920px;
+  .main-scroll{
     position: relative;
-    .fill-10 {
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      padding: 0 10px 5px 10px;
-      box-sizing: border-box;
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      &>div{
-        height: 100%;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    
+    .main-bg{
+      background: url("../../static/image/bg.jpg") 0 0 no-repeat;
+      height:1080px;
+      width: 1920px;
+      position: relative;
+      .fill-10 {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 0 10px 5px 10px;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        &>div{
+          height: 100%;
+        }
+        .summary-box{
+          // border:1px solid red;
+          padding-top:170px;
+        }
+        .event-box{
+          padding-top:34px;
+          height: 734px;
+        }
+        .unusual-box{
+          padding-top:83px;
+        }
+        .hatNum-box{
+          padding-top:83px;
+        }
+        .putHatRank{
+          margin-top:120px;
+          padding-left: 50px;
+          height:290px;
+        }
+        .putHatRate{
+          width: 690px;
+          height: 320px;
+          margin-top:53px;
+          margin-right: -27px;
+        }
       }
-      .summary-box{
-        // border:1px solid red;
-        padding-top:170px;
-      }
-      .event-box{
-        padding-top:34px;
-        height: 734px;
-      }
-      .unusual-box{
-        padding-top:83px;
-      }
-      .hatNum-box{
-         padding-top:83px;
-      }
-      .putHatRank{
-        margin-top:120px;
-        padding-left: 50px;
-        height:290px;
-      }
-      .putHatRate{
-        width: 690px;
-        height: 320px;
-        margin-top:53px;
-        margin-right: -27px;
-      }
+      // .test-font{
+      //   font-family: 'ds-digital';
+      //   font-size: 90px;
+      //   color: orange;
+      // }
     }
-    // .test-font{
-    //   font-family: 'ds-digital';
-    //   font-size: 90px;
-    //   color: orange;
-    // }
   }
-}
 </style>
