@@ -54,7 +54,7 @@
     name: 'Overview',
     data () {
       return {
-        summary: [],
+        summary: {},
         event: [],
         unusual: null,
         hatNum: null,
@@ -71,6 +71,14 @@
             console.log(results);
             this.$nextTick(function(){
               this.summary = results[0].data.data; // 总览
+              // this.summary = {
+              //   "putHatNum": 2531,
+              //   "putHatRate": 81,
+              //   "unusualNum": 267,
+              //   "unusualRate": 8,
+              //   "onlineGroup": 28,
+              //   "hatSum":3140
+              // }; 
               this.event = results[1].data.data;  // 事件中心
               this.unusual = results[2].data.data;  // 异常事件
               this.hatNum = results[3].data.data;  // 各组安全帽在线数

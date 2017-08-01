@@ -6,7 +6,8 @@
         <li v-for="(item, index) in eventData" :class="[{'icons-event-hoverbg':ind === index},{'icons-event-usualbg':ind !== index}]"  v-on:mouseenter="eventChose(index)">
           <div class="avatar">
             <img :src="item.personPic" :alt="item.personName" @error="setDftImg">
-            <span class="status">{{item.statusStr}}</span>
+            <span class="status" v-if="item.checked">已复核</span>  
+            <span class="status" v-if="!item.checked">未复核</span>
           </div>
           <!-- <div class="icon" :class="[{'icons-event-hovericon':ind === index},{'icons-event-usualicon':ind !== index}]"><i></i></div> -->
           <div class="content">

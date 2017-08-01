@@ -1,10 +1,21 @@
 <template>
 	<div>
 		<!-- <slot name="title"></slot> -->
-		<ul ref="summaryUi">
-			<li v-for="(item,index) in summary" ref="lis" v-if="index!=2" >
-        <div class = 'font-style'>{{item.value}}<span v-if="index==0 || index==3">/{{summary[2].value}}</span><span v-if="index==1 || index==4">%</span></div>
-        <!-- <div class = 'name_unit'>{{item.name}}({{item.unit}})</div> -->
+		<ul ref="summaryUi" class='font-style'>
+			<li>
+        <div>{{summary.putHatNum}}<span>/{{summary.hatSum}}</span></div>
+			</li>
+      <li>
+        <div>{{summary.putHatRate}}%</div>
+			</li>
+      <li>
+        <div>{{summary.unusualNum}}<span>/{{summary.hatSum}}</span></div>
+			</li>
+      <li>
+        <div>{{summary.unusualRate}}%</div>
+			</li>
+      <li>
+        <div>{{summary.onlineGroup}}</div>
 			</li>
 		</ul>
 	</div>
@@ -15,8 +26,8 @@
     name: 'SummaryView',
     props:{
       summary: {
-        type: Array,
-        default:()=>{return []}
+        type: Object,
+        default:()=>{return {}}
       }
     },
     // created(){
@@ -78,14 +89,15 @@
       padding: 0;
       margin: 0;
       margin-left:505px;
+      font-family: 'ds-digital';
+      font-size: 52px;
+      color: #4EC6FE;
       li{
         list-style-type:none;
         display:inline-block;
         text-align:center;
-        .font-style{
-            font-family: 'ds-digital';
-            font-size: 52px;
-            color: #4EC6FE;
+        span{
+          font-size: 36px;
         }
         &:nth-child(1){
           width: 250px;
@@ -96,13 +108,13 @@
           .position_box(116px,160px);
         }
         &:nth-child(3){
-          .position_box(105px,232px);
+          .position_box(71px,232px);
         }
         &:nth-child(4){
           .position_box(105px,160px);
         }
         &:nth-child(5){
-          .position_box(97px,125px);
+          .position_box(84px,125px);
         }
       }
     }
