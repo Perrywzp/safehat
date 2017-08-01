@@ -10,14 +10,6 @@
         </span>
         <span class="value">{{item.value}}%</span>
       </li>
-      <li v-for="(item, index) in rankData">
-        <span class="serial">{{index + 1}}</span>
-        <span class="name">{{item.name}}</span>
-        <span class="icons-rank-bar-bg bar">
-          <i :style="{width: item.value+'%'}" class="icons-rank-bar "></i>
-        </span>
-        <span class="value">{{item.value}}%</span>
-      </li>
     </ul>
   </div>
 </template>
@@ -28,7 +20,7 @@
     display: block;
     list-style: none;
     font-size: 12px;
-    padding: 0;
+    padding: 0 18px 0 0;
     margin: 0;
     height:283px;
     position:absolute;

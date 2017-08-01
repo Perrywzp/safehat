@@ -112,7 +112,7 @@
         this.line.series[0].data = this.putHatRate[type].map(item => item.value)
       }
     },
-     mounted(){
+    mounted(){
       this.switchType("week");
     }
   };

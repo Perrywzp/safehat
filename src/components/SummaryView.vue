@@ -1,9 +1,9 @@
 <template>
 	<div>
 		<!-- <slot name="title"></slot> -->
-		<ul>
-			<li v-for="(item,index) in summary" ref="summaryLi" v-if="index!=2" >
-        <div class = 'test-font'>{{item.value}}64564564765868<span v-if="index==0 || index==3">/{{summary[2].value}}</span></div>
+		<ul ref="summaryUi">
+			<li v-for="(item,index) in summary" ref="lis" v-if="index!=2" >
+        <div class = 'font-style'>{{item.value}}<span v-if="index==0 || index==3">/{{summary[2].value}}</span><span v-if="index==1 || index==4">%</span></div>
         <!-- <div class = 'name_unit'>{{item.name}}({{item.unit}})</div> -->
 			</li>
 		</ul>
@@ -19,9 +19,49 @@
         default:()=>{return []}
       }
     },
-    mounted(){
-      PS.initialize(this.$refs.summaryLi,{minScrollbarLength:20});
-    }
+    // created(){
+    //   this.$nextTick(()=>{
+          
+    //       console.log(this.$refs.summaryLi);
+    //       PS.initialize(this.$refs.summaryLi[0]);
+    //     })  
+    // },  
+
+    // mounted(){    
+    // //   console.log(this.$refs.summaryLi[0]);     
+    //   this.$nextTick(()=>{
+    //       // console.log(this.$refs.summaryUi.getElementsByTagName('li'));
+    //       // console.log(this.$refs.summaryLi);
+    //       // var oLi = this.$refs.summaryUi.getElementsByTagName('li');
+    //       // console.log(oLi.length);
+
+    //     PS.initialize(this.$refs.lis[0]); 
+
+    //       // this.summary.forEach((item, index)=>{
+    //       //   if(index == 1 || index == 3) return ;
+    //       //   console.log(this.$refs.lis[index]);
+    //       //   PS.initialize(this.$refs.lis[index]); 
+    //       // })
+
+
+    //   })    
+    // }  
+    // nextTick(){
+    //   console.log(this.$refs.summaryUi.getElementsByTagName('li'));
+    //       console.log(this.$refs.summaryLi);
+    //       var oLi = this.$refs.summaryUi.getElementsByTagName('li');
+    //       console.log(oLi.length);
+    // }
+    // forceUpdate(){
+    //   console.log(this.$refs.summaryUi.getElementsByTagName('li'));
+    //       console.log(this.$refs.summaryLi);
+    //       var oLi = this.$refs.summaryUi.getElementsByTagName('li');
+    //       console.log(oLi.length);  
+    // }
+      
+      //PS.initialize(this.$refs.summaryLi[2],{minScrollbarLength:20});
+      //PS.initialize(this.$refs.summaryLi[4],{minScrollbarLength:20});
+    // }
   }
 </script>
 <style scoped lang="less">
@@ -42,7 +82,7 @@
         list-style-type:none;
         display:inline-block;
         text-align:center;
-        .test-font{
+        .font-style{
             font-family: 'ds-digital';
             font-size: 52px;
             color: #4EC6FE;
@@ -53,16 +93,16 @@
           overflow:hidden;
         }
         &:nth-child(2){
-          .position_box(110px,160px);
+          .position_box(116px,160px);
         }
         &:nth-child(3){
-          .position_box(108px,232px);
+          .position_box(105px,232px);
         }
         &:nth-child(4){
           .position_box(105px,160px);
         }
         &:nth-child(5){
-          .position_box(87px,125px);
+          .position_box(97px,125px);
         }
       }
     }

@@ -1,38 +1,40 @@
 <template>
-  <div class="main-bg">
-    <LayoutView>
-      <div slot="summary" class="summary-box">
-        <summary-view  :summary="summary">
-          <!-- <h3 slot="title">总览</h3> -->
-        </summary-view>
-        <!-- <div class="test-font">1123123123</div> -->
-      </div>
-      <div slot="event" class="event-box">
-        <event-view  :eventData="event">
-          <!-- <h3 slot="title">事件中心</h3> -->
-        </event-view>
-      </div>
-      <div slot="unusual" class="unusual-box">
-        <pie-view :pieData="unusual" :colors="unusualColors" :pos="{'left': 67, 'bottom': -5}" :echartsPos="{'marginLeft':280,'marginTop':16}">
-          <!-- <h3 slot="title">异常事件</h3> -->
-        </pie-view>
-      </div>
-      <div slot="hatNum" class="hatNum-box" ref='hatNum-box'>
-        <pie-view :colors="hatNumColors" :pieData="hatNum" :pos="{'left': 348, 'bottom': -5}" :echartsPos="{'marginLeft':41,'marginTop':17}">
-          <!-- <h3 slot="title">各组安全帽在线数</h3> -->
-        </pie-view>
-      </div>
-      <div slot="putHatRank" class="putHatRank">
-        <rank-view :rankData="putHatRank">
-          <!-- <h3 slot="title">各组戴帽率排行</h3> -->
-        </rank-view>
-      </div>
-      <div slot="putHatRate" class="putHatRate">
-        <curve-view :putHatRate="putHatRate">
-          <!-- <h3 slot="title">日／周／月戴帽率</h3> -->
-        </curve-view>
-      </div>
-    </LayoutView>
+  <div class="main-scroll" ref="mainScroll">
+    <div class="main-bg">
+      <LayoutView>
+        <div slot="summary" class="summary-box">
+          <summary-view :summary="summary">
+            <!-- <h3 slot="title">总览</h3> -->
+          </summary-view>
+          <!-- <div class="test-font">1123123123</div> -->
+        </div>
+        <div slot="event" class="event-box">
+          <event-view  :eventData="event">
+            <!-- <h3 slot="title">事件中心</h3> -->
+          </event-view>
+        </div>
+        <div slot="unusual" class="unusual-box">
+          <pie-view :pieData="unusual" :colors="unusualColors" :pos="{'left': 67, 'bottom': 83}" :echartsPos="{'marginLeft':280,'marginTop':16}">
+            <!-- <h3 slot="title">异常事件</h3> -->
+          </pie-view>
+        </div>
+        <div slot="hatNum" class="hatNum-box" ref='hatNum-box'>
+          <pie-view :colors="hatNumColors" :pieData="hatNum" :pos="{'left': 348, 'bottom': 83}" :echartsPos="{'marginLeft':41,'marginTop':17}">
+            <!-- <h3 slot="title">各组安全帽在线数</h3> -->
+          </pie-view>
+        </div>
+        <div slot="putHatRank" class="putHatRank">
+          <rank-view :rankData="putHatRank">
+            <!-- <h3 slot="title">各组戴帽率排行</h3> -->
+          </rank-view>
+        </div>
+        <div slot="putHatRate" class="putHatRate">
+          <curve-view v-if="putHatRate" :putHatRate="putHatRate">
+            <!-- <h3 slot="title">日／周／月戴帽率</h3> -->
+          </curve-view>
+        </div>
+      </LayoutView>
+    </div>
   </div>
 </template>
 
@@ -45,6 +47,7 @@
   import EventView from '../components/EventView.vue'
   import * as OverviewApi from '../apis/overview'
   import _ from 'lodash'
+  import PS from 'perfect-scrollbar'
   export default {
     name: 'Overview',
     data () {
@@ -88,6 +91,9 @@
       CurveView,
       RankView,
       EventView,
+    },
+    mounted(){
+      PS.initialize(this.$refs.mainScroll);
     }
   }
 </script>
@@ -96,6 +102,17 @@
   @import '../common/css/grid-layout.css';
   //@import '../assets/font/ds-digital/ds-ditital.css';
   //@import '../common/less/icons.less';
+  // html,body{
+  //   height: 100%;
+  //   width: 100%;
+    
+  // }
+.main-scroll{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  
   .main-bg{
     background: url("../../static/image/bg.jpg") 0 0 no-repeat;
     height:1080px;
@@ -116,13 +133,14 @@
         padding-top:170px;
       }
       .event-box{
-        padding-top:80px;
+        padding-top:34px;
+        height: 734px;
       }
       .unusual-box{
-        padding-top:174px;
+        padding-top:83px;
       }
       .hatNum-box{
-         padding-top:174px;
+         padding-top:83px;
       }
       .putHatRank{
         margin-top:120px;
@@ -142,5 +160,5 @@
     //   color: orange;
     // }
   }
-
+}
 </style>

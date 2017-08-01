@@ -10,11 +10,6 @@
         <span>{{item.name}}</span>
         <strong>{{item.value}}</strong>
       </li>
-      <li v-for="(item,index) in pieData">
-        <span class="legend-span" v-bind:style="{backgroundColor:colors[index]}" ></span>
-        <span>{{item.name}}</span>
-        <strong>{{item.value}}</strong>
-      </li>
     </ul>
   </div>
 </template>
@@ -121,7 +116,7 @@
     height: 121px;
     overflow: hidden;
     padding: 0;
-    width: 160px;
+    width: 176px;
     li{
       
       list-style-type: none;
@@ -135,7 +130,7 @@
       }
       strong{
         position: absolute;
-        right:0;
+        right:16px;
         color: #02f0fd;
       }      
     }

@@ -38,7 +38,7 @@
     width: 592px;
   }
   ul{
-    border-top:3px solid #4EC6FE;
+    // border-top:3px solid #4EC6FE;
     display: block;
     list-style: none;
     margin:  0 0 0 36px;
