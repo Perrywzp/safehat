@@ -1,28 +1,33 @@
 <template>
   <div>
     <slot name="title"></slot>
-    <ul>
+    <ul ref="rankUl">
       <li v-for="(item, index) in rankData">
         <span class="serial">{{index + 1}}</span>
         <span class="name">{{item.name}}</span>
-        <span class="bar">
-          <i :style="{width: item.value+'%'}"></i>
+        <span class="icons-rank-bar-bg bar">
+          <i :style="{width: item.value+'%'}" class="icons-rank-bar "></i>
         </span>
-        <span class="value">{{item.value}}</span>
+        <span class="value">{{item.value}}%</span>
       </li>
     </ul>
   </div>
 </template>
 <style scoped lang="less">
-  @serial-width: 20px;
+@import '../common/less/icons.less';
+  @serial-width: 16px;
   ul{
     display: block;
     list-style: none;
-    padding: 0;
+    font-size: 12px;
+    padding: 0 18px 0 0;
     margin: 0;
+    height:283px;
+    position:absolute;
+    overflow:hidden;
   }
   li{
-    margin-bottom: 3px;
+    margin:10px 0;
     span{
       display: inline-block;
       vertical-align: middle;
@@ -31,31 +36,48 @@
       width: @serial-width;
       height: @serial-width;
       line-height: @serial-width;
+      margin-right:5px;
       text-align: center;
       border-radius: 3px;
-      background-color: #ccc;
+      border:1px solid #659910;
+      font-weight: bold;
+      color:#659910; 
+      background-color:rgba(0,0,0,0); 
     }
+    &:nth-child(1),&:nth-child(2),&:nth-child(3){
+       font-weight: bold;
+      .serial{
+        color:#05472c; 
+        background-color: #a6ff1b;
+      }
+    }
+    
     .name{
       width: 110px;
+      color: #fff;
       overflow: hidden;
       text-overflow: ellipsis;
     }
     .bar{
-      width: 240px;
-      height: 12px;
+      width: 186px;
+      height: 6px;
+      
       i{
+        border-radius: 3px;
         display: block;
-        background-color: orange;
+        //background-color: orange;
         width: 20%;
         height: 100%;
       }
     }
     .value{
+      color: #02f0fd;
       margin-left: 3px;
     }
   }
 </style>
 <script>
+  import PS from 'perfect-scrollbar'
   export default {
     name: 'RankView',
     props:{
@@ -63,6 +85,9 @@
         type: Array,
         default:()=>{return []}
       }
+    },
+    mounted(){
+      PS.initialize(this.$refs.rankUl,{minScrollbarLength:20})
     }
   }
 </script>

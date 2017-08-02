@@ -3,18 +3,22 @@
     <slot name="title"></slot>
     <div class="scroll-box" ref="scrollBox">
       <ul>
-        <li v-for="(item, index) in eventData" >
+        <li v-for="(item, index) in eventData" :class="[{'icons-event-hoverbg':ind === index},{'icons-event-usualbg':ind !== index}]"  v-on:mouseenter="eventChose(index)">
           <div class="avatar">
             <img :src="item.personPic" :alt="item.personName" @error="setDftImg">
-            <span class="status">{{item.statusStr}}</span>
+            <span class="status" v-if="item.checked">已复核</span>  
+            <span class="status" v-if="!item.checked">未复核</span>
           </div>
-          <div class="icon"><i></i></div>
+          <!-- <div class="icon" :class="[{'icons-event-hovericon':ind === index},{'icons-event-usualicon':ind !== index}]"><i></i></div> -->
           <div class="content">
-            <h3>{{item.eventName}}</h3>
-            <span class="text">人员姓名:{{item.personName}}</span>
-            <span class="text">所在班组:{{item.groupName}}</span>
-            <span class="text" v-if="index==0">联系方式:{{item.phone}}</span>
-            <span class="text" v-if="index==0">安全帽编号:{{item.hatId}}</span>
+            <div>
+              <h3>{{item.eventName}}</h3> 
+              <div class="icon" :class="[{['icons-event-hovericon'+item.type]:ind === index},{['icons-event-usualicon'+item.type]:ind !== index}]"><i></i></div> 
+            </div>
+            <span v-if="index===ind">{{item.personName}} </span>
+            <span v-if="index===ind"> {{item.groupName}}</span>
+            <span class="span-block">{{item.phone}}</span>
+            <span class="span-block" v-if="index==ind">安全帽编号:{{item.hatId}}</span>
           </div>
           <div class="time">{{item.timeStr}}</div>
         </li>
@@ -24,71 +28,135 @@
 </template>
 
 <style scoped lang="less">
+@import '../common/less/icons.less';
   .event-box{
     margin-right: -8px;
+    color: #fff;
   }
   .scroll-box{
     position: relative;
-    height: 760px;
+    height: 700px;
+    width: 592px;
   }
   ul{
+    // border-top:3px solid #4EC6FE;
     display: block;
     list-style: none;
-    margin: 0;
+    margin:  0 0 0 36px;
     padding: 0 16px 0 0;
+    width: 560px;
   }
   li{
-    &:first-child{
-      .avatar {
-        width: 150px;
-        height: 150px;
-      }
-    }
     position: relative;
-    border: 1px solid #ccc;
     border-radius: 5px;
     margin-bottom: 10px;
-    padding: 15px 20px;
+    padding: 8px 18px;
     .avatar{
       position: relative;
-      width: 90px;
-      height: 90px;
+      width: 53px;
+      height: 69px;
       img{
         width: 100%;
         height: 100%;
       }
       .status{
         position: absolute;
-        right: 0;
-        bottom: 0;
-        background: #ccc;
-        color: #333;
+        right: -452px;
+        bottom: 11px;
+        color: #fff;
       }
     }
     &>div{
       display: inline-block;
       vertical-align: top;
     }
-    .icon{
-      width: 35px;
-    }
     .content{
       width: 250px;
       h3{
-        height: 25px;
-        line-height: 25px;
         margin:0;
         padding: 0;
       }
-      .text{
-        display: inline-block;
+      .span-block{
+        display: block;
       }
     }
     .time{
+      font-size: 14px;
       position: absolute;
-      right: 10px;
-      top: 20px;
+      
     }
+  }
+  .icons-event-hoverbg{
+    margin-left:5px; 
+    .avatar {
+      width: 119px;
+      height: 150px;
+      margin-top:8px;
+      .status{
+        right: -386px;
+        bottom:73px;
+        color: #02f0fd;
+      }
+    }
+    .content{
+      padding-left:17px;
+      h3{
+        height: 24px;
+        line-height: 24px;
+        display: inline-block;
+        color: #FF3459;
+        font-size:24px;
+        padding:10px 0 20px 0;
+        margin-bottom:5px;
+      }
+      .icon{
+        vertical-align: bottom;
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        margin-bottom: 20px;
+        margin-left: 5px;
+      }
+      span{
+        &:nth-child(2){
+          font-size:24px;
+        }
+        &:nth-child(4){
+          font-size:32px;
+          padding:10px 0;
+        }
+        &:nth-child(5){
+          color: #24c4fe;
+        }
+      }
+    } 
+    .time{
+      right: 14px;
+      top: 24px;
+    }
+  }
+  .icons-event-usualbg{
+    margin-left:7px;
+    .content{
+      padding-left:81px;
+      .icon{
+        position: absolute;
+        top:14px;
+        left:84px;
+      }
+      h3{
+        color:#02f0fd;
+        margin-top:3px;
+      }
+      span.span-block{
+        padding:14px 0;
+      }
+    }   
+    .time{
+      right: 19px;
+      top: 15px;
+    }
+    
   }
 </style>
 
@@ -102,13 +170,21 @@
         default(){return []}
       }
     },
+    data(){
+          return{
+              ind:0
+          }     
+        },
     methods: {
+      eventChose(index){
+        this.ind = index;
+      },
     	setDftImg(e){
         e.target.src= require('../assets/imgs/avatar.jpg')
       }
     },
     mounted(){
-    	PS.initialize(this.$refs.scrollBox,{scrollYMarginOffset: 20});
+    	PS.initialize(this.$refs.scrollBox,{scrollYMarginOffset: 20,suppressScrollX:true});
     }
   }
 </script>
