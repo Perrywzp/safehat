@@ -56,7 +56,7 @@
       }
     },
     created (){
-//      setInterval(()=>{
+     setInterval(()=>{
         this.axios.all(_.values(OverviewApi).map((url)=> { return this.axios.get(url)}))
           .then((results) =>{
             console.log(results);
@@ -69,7 +69,7 @@
               this.putHatRate = results[5].data.data;  // 日周月带帽率
             })
           })
-//      }, 5000);
+     }, 5000);
 
     },
     components:{
