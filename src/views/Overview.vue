@@ -6,7 +6,6 @@
           <summary-view :summary="summary">
             <!-- <h3 slot="title">总览</h3> -->
           </summary-view>
-          <!-- <div class="test-font">1123123123</div> -->
         </div>
         <div slot="event" class="event-box">
           <event-view  :eventData="event">
@@ -60,25 +59,16 @@
         hatNum: null,
         putHatRank: null,
         putHatRate: null,
-        unusualColors:[],
-        hatNumColors:[]
+        unusualColors:['#ffea3e','#ffb901', '#24c7c6', '#6060ff', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3'],
+        hatNumColors:['#feea3d','#ffb901', '#ff7345', '#2cda97', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3']
       }
     },
     created (){
      setInterval(()=>{
         this.axios.all(_.values(OverviewApi).map((url)=> { return this.axios.get(url)}))
           .then((results) =>{
-            console.log(results);
             this.$nextTick(function(){
               this.summary = results[0].data.data; // 总览
-              // this.summary = {
-              //   "putHatNum": 2531,
-              //   "putHatRate": 81,
-              //   "unusualNum": 267,
-              //   "unusualRate": 8,
-              //   "onlineGroup": 28,
-              //   "hatSum":3140
-              // }; 
               this.event = results[1].data.data;  // 事件中心
               this.unusual = results[2].data.data;  // 异常事件
               this.hatNum = results[3].data.data;  // 各组安全帽在线数
@@ -86,13 +76,7 @@
               this.putHatRate = results[5].data.data;  // 日周月带帽率
             })
           })
-     }, 5000);
-
-      this.unusualColors = ['#ffea3e','#ffb901', '#24c7c6', '#6060ff', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3'];
-      //console.log(this.colors);
-      this.hatNumColors = ['#feea3d','#ffb901', '#ff7345', '#2cda97', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3'];
-
-
+     }, 3000);
     },
     components:{
       LayoutView,
@@ -111,19 +95,12 @@
 
 <style scoped lang="less">
   @import '../common/css/grid-layout.css';
-  //@import '../assets/font/ds-digital/ds-ditital.css';
-  //@import '../common/less/icons.less';
-  // html,body{
-  //   height: 100%;
-  //   width: 100%;
-    
-  // }
   .main-scroll{
     position: relative;
     height: 100%;
     width: 100%;
     overflow: hidden;
-    
+
     .main-bg{
       background: url("../../static/image/bg.jpg") 0 0 no-repeat;
       height:1080px;
@@ -165,11 +142,6 @@
           margin-right: -27px;
         }
       }
-      // .test-font{
-      //   font-family: 'ds-digital';
-      //   font-size: 90px;
-      //   color: orange;
-      // }
     }
   }
 </style>

@@ -62,9 +62,11 @@
             <span>{{runningStatusArr[scope.row.runningStatus]}}</span>
           </template>
         </el-table-column>
-        <el-table-column align="center" fixed="right" label="操作" width="100">
+        <el-table-column align="center" fixed="right" label="操作" width="180">
           <template scope="scope">
             <el-button type="text" size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+            <el-button type="text" size="small" @click="handleGroup(scope.$index, scope.row)">{{scope.row.teamName && '修改分组' || '添加分组'}}</el-button>
+            <el-button type="text" size="small" @click="handleReboot(scope.$index, scope.row)">重启</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -74,7 +76,7 @@
                      :total="listData.total">
       </el-pagination>
     </div>
-    <el-dialog title="添加安全帽" :visible.sync="helmetDialog" @close="cancelDialog">
+    <el-dialog :title="helmetDialogName" :visible.sync="helmetDialog" @close="cancelDialog">
       <el-form :inline="true" :model="helmetFormData" :rules="helmetFormRules" ref="helmetForm">
         <el-form-item label="安全帽编号:" prop="helmetMac" :label-width="formLabelWidth">
           <el-input class="input-content" v-model="helmetFormData.helmetMac" auto-complete="off" :disabled="editModel"></el-input>
@@ -93,6 +95,19 @@
       <div slot="footer" class="dialog-footer">
         <el-button @click="helmetDialog=false">取 消</el-button>
         <el-button type="primary" @click="saveHelmet">确 定</el-button>
+      </div>
+    </el-dialog>
+    <el-dialog :title="groupDialogName" :visible.sync="groupDialog" size="tiny">
+      <el-form :model="groupFormData" :rules="groupFormRules" ref="groupForm">
+        <el-form-item label="分组" :label-width="formLabelWidth">
+          <el-select v-model="groupFormData.teamId" placeholder="请选择分组">
+            <el-option v-for="(item,index) in groupList" :label="item.name" :value="item.id" :key="index"></el-option>
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="groupDialog=false">取 消</el-button>
+        <el-button type="primary" @click="saveGroup">确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -161,6 +176,15 @@
           workerPhone: '',
           workerPicture: ''
         },
+        groupDialogName: '添加分组',
+        helmetDialogName: '添加安全帽',
+        groupFormData:{
+          teamId: '',
+          helmetMac: 0,
+        },
+        groupFormRules: {
+          teamId: [{required: true, message: '请给该安全帽选一个分组', trigger:'blur'}]
+        },
         helmetFormRules:{
         	helmetMac:[{required: true, message: '请输入安全帽编号!', trigger:'blur'}],
           worker: [{required: true, message: '请输入人员姓名!', trigger:'blur'}],
@@ -169,6 +193,8 @@
         },
         formLabelWidth: '120px',
         helmetDialog: false,
+        groupDialog: false,
+        groupList: [],
         listData: {
           page: 1,
           pageSize: 10,
@@ -203,11 +229,46 @@
         this.helmetDialog = true;
         this.editModel = true;
         this.helmetFormData = rowData;
+         this.helmetDialogName = '修改安全帽';
       },
       handleAdd() {
         this.helmetDialog = true;
         this.editModel = false;
-        this.helmetFormData = {helmetMac: '', worker: '', workerPhone: '', workerPicture: ''}
+        this.helmetFormData = {helmetMac: '', worker: '', workerPhone: '', workerPicture: ''};
+        this.helmetDialogName = '添加安全帽';
+      },
+      handleGroup: function(index, rowData){
+        this.groupDialog = true;
+        rowData.teamName && (this.groupDialogName = '修改分组') || (this.groupDialogName = '添加分组');
+        helmetApi.groupList().then((data)=>{
+          console.log(data);
+          this.groupList = data.data.data;
+          this.groupFormData.teamId = rowData.teamId;
+          this.groupFormData.helmetMac = rowData.helmetMac;
+        });
+      },
+      handleReboot: function(index,rowData){
+        helmetApi.reboot({helmetMac: rowData.helmetMac}).then((data)=>{
+          this.$message({
+            type: data.data.success&&'success'|| 'error',
+            message: data.data.success&&'重启成功!'|| '重启失败!'
+          });
+        });
+      },
+      saveGroup: function(){
+        this.$refs['groupForm'].validate((valid)=>{
+          valid && helmetApi.handleGroup(this.groupFormData)
+            .then(()=>{
+              this.groupDialog = false;
+              this.queryData.page= 1;
+              this.handleQuery();
+              this.$message({
+                type: 'success',
+                message: '保存成功!'
+              });
+            })
+        })
+
       },
       saveHelmet(){
         this.$refs['helmetForm'].validate((valid) => {

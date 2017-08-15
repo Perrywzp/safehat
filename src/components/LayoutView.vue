@@ -1,3 +1,4 @@
+<script src="../main.js"></script>
 <template>
   <div>
     <!--安全帽总览-->
