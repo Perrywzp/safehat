@@ -32,7 +32,7 @@ module.exports = {
       //   target: 'http://localhost:3000',
       //   changeOrigin: true
       // }
-      '/api':{
+      '/helmet/api':{
         target: 'http://10.20.133.246:8080',
         changeOrigin: true
       }

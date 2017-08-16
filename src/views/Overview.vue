@@ -18,8 +18,10 @@
           </pie-view>
         </div>
         <div slot="hatNum" class="hatNum-box" ref='hatNum-box'>
-          <pie-view :colors="hatNumColors" :pieData="hatNum" :pos="{'left': 348, 'bottom': 83}" :echartsPos="{'marginLeft':41,'marginTop':17}">
-            <!-- <h3 slot="title">各组安全帽在线数</h3> -->
+          <pie-view :modelFlag="modelFlag" :colors="hatNumColors" :pieData="hatNum" :pos="{'left': 348, 'bottom': 83}" :echartsPos="{'marginLeft':41,'marginTop':17}">
+             <h3 slot="title">
+               <div class="icons-title-png" :class="modelFlag"></div>
+             </h3>
           </pie-view>
         </div>
         <div slot="putHatRank" class="putHatRank">
@@ -53,6 +55,7 @@
     name: 'Overview',
     data () {
       return {
+        modelFlag: 'hatNum',
         summary: {},
         event: [],
         unusual: null,
@@ -64,19 +67,24 @@
       }
     },
     created (){
-     setInterval(()=>{
+      setInterval(()=>{
         this.axios.all(_.values(OverviewApi).map((url)=> { return this.axios.get(url)}))
           .then((results) =>{
             this.$nextTick(function(){
               this.summary = results[0].data.data; // 总览
               this.event = results[1].data.data;  // 事件中心
               this.unusual = results[2].data.data;  // 异常事件
-              this.hatNum = results[3].data.data;  // 各组安全帽在线数
+//              this.hatNum = results[3].data.data;  // 各组安全帽在线数
               this.putHatRank = results[4].data.data;  // 排名
               this.putHatRate = results[5].data.data;  // 日周月带帽率
             })
           })
-     }, 3000);
+          if(this.modelFlag === 'hatNum'){
+            this.axios.get(OverviewApi.check).then((rs) => { this.hatNum = rs.data.data; this.modelFlag = 'check';});
+          }else{
+            this.axios.get(OverviewApi.hatNum).then((rs) => { this.hatNum = rs.data.data; this.modelFlag  = 'hatNum';});
+          }
+      }, 3000);
     },
     components:{
       LayoutView,

@@ -5,10 +5,10 @@
       <IEcharts :option="getPie" :resizable="true"></IEcharts>
     </div>
     <ul class="legend" ref="pieDom">
-      <li v-for="(item,index) in pieData">
+      <li v-for="(item, index) in pieData">
         <span class="legend-span" v-bind:style="{backgroundColor:colors[index]}" ></span>
         <span>{{item.name}}</span>
-        <strong>{{item.value}}</strong>
+        <strong>{{formatVal(item)}}</strong>
       </li>
     </ul>
   </div>
@@ -23,6 +23,10 @@
       IEcharts
     },
     props: {
+        modelFlag:{
+          type: String,
+          default: ()=>''
+        },
         colors:{
           type: Array,
           default:()=>{return ['#aad','#dds','#c3s']}
@@ -54,18 +58,16 @@
     mounted(){
       this.$refs.pieDom.style.left = this.pos.left +'px';
       this.$refs.pieDom.style.bottom = this.pos.bottom +'px';
-      //console.log(this.pos.left);
-      //console.log(this.$refs.pieDom.style.left);
       this.$refs.echartsDom.style.marginLeft = this.echartsPos.marginLeft +'px';
       this.$refs.echartsDom.style.marginTop = this.echartsPos.marginTop +'px';
-
-      console.log(length);
-
       PS.initialize(this.$refs.pieDom,{
         minScrollbarLength:20
       });
-
-
+    },
+    methods: {
+      formatVal(item){
+        return this.modelFlag === 'check' && item.value + '/' + item.total || item.value;
+      },
     },
     computed: {
       getPie(){
@@ -78,24 +80,10 @@
             series : [
               {
                 type: 'pie',
-               // radius : '55%',
                 center: ['50%', '50%'],
                 radius:['51%','89%'],
                 data: this.pieData,
-                label:{
-                  normal:{
-                    show:false
-                  }
-                },
-                // itemStyle: {
-                //   labelLine:false
-                //   // emphasis: {
-                //   //   shadowBlur: 10,
-                //   //   shadowOffsetX: 0,
-                //   //   shadowColor: 'rgba(0, 0, 0, 0.5)'
-                //   // }
-                   
-                // }
+                label:{ normal: { show: false}}
               }
             ]
           }
@@ -105,11 +93,18 @@
 </script>
 
 <style scoped lang="less">
+  @import '../common/less/icons.less';
   .echarts {
     width:250px;
     height: 250px;
-    // margin-left:280px;
-    // margin-top:16px;
+  }
+  .title-png{
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    width: 108px;
+    height: 27px;
+    background-image: url("/static/image/pos.png")
   }
   .legend{
     position: absolute;
@@ -118,10 +113,10 @@
     padding: 0;
     width: 176px;
     li{
-      
+
       list-style-type: none;
       line-height: 30px;
-      color: #fff; 
+      color: #fff;
       .legend-span{
         display: inline-block;
         width: 12px;
@@ -132,7 +127,7 @@
         position: absolute;
         right:16px;
         color: #02f0fd;
-      }      
+      }
     }
   }
 </style>

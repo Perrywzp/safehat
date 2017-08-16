@@ -17,11 +17,12 @@
 // export const tableList='/api/helmets/list'
 
 // java端接口
-export const summary = '/api/reports/realtime/helmets/overview'
-export const event='/api/reports/realtime/helmets/incidents'
-export const unusual='/api/reports/realtime/helmets/incidents/teams'
-export const hatNum='/api/reports/realtime/helmets/online/teams'
-export const putHatRank='/api/reports/realtime/helmets/wearrate/teams'
-export const putHatRate='/api/reports/history/helmets/wearrate'
+export const summary = '/helmet/api/reports/realtime/helmets/overview'
+export const event='/helmet/api/reports/realtime/helmets/incidents'
+export const unusual='/helmet/api/reports/realtime/helmets/incidents/teams'
+export const hatNum='/helmet/api/reports/realtime/helmets/online/teams'
+export const putHatRank='/helmet/api/reports/realtime/helmets/wearrate/teams'
+export const putHatRate='/helmet/api/reports/history/helmets/wearrate'
+export const check='/helmet/api/reports/realtime/helmets/attendance/teams'
 
 

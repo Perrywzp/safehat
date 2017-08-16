@@ -1,0 +1,11 @@
+{
+  "code": 0,
+  "success": true,
+  "data": [
+    {"name":"泥工组", "value": 120,"total": 200},
+    {"name":"钢筋组", "value": 110,"total": 240},
+    {"name":"经理组", "value": 60,"total": 210},
+    {"name":"项目经理组", "value": 80,"total": 220}
+  ],
+  "msg": ""
+}

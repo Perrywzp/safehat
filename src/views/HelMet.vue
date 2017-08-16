@@ -303,7 +303,7 @@
         }).then(() => {
           helmetApi.del({
             helmetList: this.multipleSelection.map((item) => {
-              return item.mac
+              return item.helmetMac
             })
           }).then(() => {
           	this.helmetDialog = false;
